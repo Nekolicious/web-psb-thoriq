@@ -30,9 +30,10 @@ class AdminController extends Controller
 
     public function formulir()
     {
-        $data = FormulirAktif::all();
+        $datapaud = FormulirAktif::all()->where('id', 1);
+        $datatpa = FormulirAktif::all()->where('id', 2);
         $datapsb = ProsesPSB::all()->where('status', 1);
-        return view('admin.alurformulir', ['data' => $data, 'datapsb' => $datapsb]);
+        return view('admin.alurformulir', ['datapaud' => $datapaud, 'datatpa' => $datatpa, 'datapsb' => $datapsb]);
     }
 
     public function getKCS($ppsb_id = 0)
@@ -58,7 +59,7 @@ class AdminController extends Controller
 
         $data = FormulirAktif::updateOrCreate(
             [
-                'id' => '1',
+                'id' => $request->id,
             ],
             [
                 'ppsb_id' => $request->ppsb_id,

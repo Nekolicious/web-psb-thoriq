@@ -22,6 +22,12 @@ class KCSSeeder extends Seeder
                 'keterangan' => 'Data Test',
                 'ppsb_id' => '1',
             ],
+            [
+                'nama' => 'Gelombang Tes 2',
+                'kapasitas' => '120',
+                'keterangan' => 'Data Test 2',
+                'ppsb_id' => '2',
+            ],
         ];
 
         foreach ($kcs as $key => $value) {

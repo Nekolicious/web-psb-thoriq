@@ -8,13 +8,26 @@ use App\Models\KelompokCalonSiswa;
 use App\Models\ProsesPSB;
 use App\Models\CalonSiswa;
 use App\Models\FotoSiswa;
+use App\Models\Kelulusan;
 
 class PageController extends Controller
 {
+
     public function daftar()
     {
-        $data = FormulirAktif::all();
-        return view('user.formdaftar', ['data' => $data]);
+        return view('user.formdaftar');
+    }
+
+    public function daftarpaud()
+    {
+        $data = FormulirAktif::all()->where('kcs_id', 1);
+        return view('user.formpaud', ['data' => $data]);
+    }
+
+    public function daftartpa()
+    {
+        $data = FormulirAktif::all()->where('kcs_id', 2);
+        return view('user.formtpa', ['data' => $data]);
     }
 
     public function store(Request $request)
@@ -53,8 +66,8 @@ class PageController extends Controller
         ]);
 
         $FotoSiswa = new FotoSiswa;
-        if($request->file('foto')->isValid()) {
-            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama). '.' . $request->file('foto')->getClientOriginalExtension();
+        if ($request->file('foto')->isValid()) {
+            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama) . '.' . $request->file('foto')->getClientOriginalExtension();
             $filePath = $request->file('foto')->storeAs('uploads', $fileName, 'public');
             $FotoSiswa->filename = $fileName;
             $FotoSiswa->path = '/storage/' . $filePath;
@@ -67,9 +80,37 @@ class PageController extends Controller
         $kode = ProsesPSB::where('ppsb_id', $ppsb->ppsb_id)->first('kode');
 
         $updateData = CalonSiswa::where('calon_id', $CalonSiswa->id);
+        $nodaftar = ($kode->kode) . (str_pad($CalonSiswa->id, 3, '0', STR_PAD_LEFT));
         $updateData->update([
-            'nodaftar' => ($kode->kode) . (str_pad($CalonSiswa->id, 3, '0', STR_PAD_LEFT)),
+            'nodaftar' => $nodaftar,
         ]);
-        return back()->with('success', 'Terimakasih telah mendaftar, harap tunggu informasi selanjutnya!');
+
+        return back()->with('success', 'Terimakasih telah mendaftar, Nomor pendaftaran anda [' . $nodaftar . ']');
+    }
+
+    public function kelulusanpaud()
+    {
+        try {
+            $filterkcs = FormulirAktif::where('id', '1')->select('kcs_id')->get()->toArray();
+            $includedata = CalonSiswa::whereIn('kcs_id', $filterkcs)->select('calon_id')->get()->toArray();
+            $siswa = CalonSiswa::whereIn('calon_id', $includedata)->select('calon_id')->get()->toArray();
+            $data = Kelulusan::where('status', '1')->whereIn('calon_id', $siswa)->get();
+            return view('user.kelulusanpaud', ['data' => $data]);
+        } catch (\Throwable $th) {
+            return back()->route('home')->withErrors('Belum ada data!');
+        }
+    }
+
+    public function kelulusantpa()
+    {
+        try {
+            $filterkcs = FormulirAktif::where('id', '2')->select('kcs_id')->get()->toArray();
+            $includedata = CalonSiswa::whereIn('kcs_id', $filterkcs)->select('calon_id')->get()->toArray();
+            $siswa = CalonSiswa::whereIn('calon_id', $includedata)->select('calon_id')->get()->toArray();
+            $data = Kelulusan::where('status', '1')->whereIn('calon_id', $siswa)->get();
+            return view('user.kelulusanpaud', ['data' => $data]);
+        } catch (\Throwable $th) {
+            return back()->route('home')->withErrors('Belum ada data!');
+        }
     }
 }

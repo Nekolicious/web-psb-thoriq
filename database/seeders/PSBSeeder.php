@@ -22,6 +22,12 @@ class PSBSeeder extends Seeder
                 'keterangan' => 'Data Test',
                 'status' => '1',
             ],
+            [
+                'nama' => 'Dummy Test 02',
+                'kode' => 'DMT02',
+                'keterangan' => 'Data Test 2',
+                'status' => '1',
+            ],
         ];
 
         foreach ($ppsb as $key => $value) {

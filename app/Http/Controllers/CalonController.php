@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CalonSiswa;
 use App\Models\FotoSiswa;
 use App\Models\KelompokCalonSiswa;
+use App\Models\Kelulusan;
 use App\Models\ProsesPSB;
 
 class CalonController extends Controller
@@ -66,7 +67,7 @@ class CalonController extends Controller
 
         $FotoSiswa = new FotoSiswa();
         if ($request->file('foto')->isValid()) {
-            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama). '.' . $request->file('foto')->getClientOriginalExtension();
+            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama) . '.' . $request->file('foto')->getClientOriginalExtension();
             $filePath = $request->file('foto')->storeAs('uploads', $fileName, 'public');
             $FotoSiswa->filename = $fileName;
             $FotoSiswa->path = '/storage/' . $filePath;
@@ -136,7 +137,7 @@ class CalonController extends Controller
         // }
         $FotoSiswa = new FotoSiswa();
         if ($request->file('foto')->isValid()) {
-            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama). '.' . $request->file('foto')->getClientOriginalExtension();
+            $fileName = time() . '_' . preg_replace('/\s+/', '', $request->nama) . '.' . $request->file('foto')->getClientOriginalExtension();
             $filePath = $request->file('foto')->storeAs('uploads', $fileName, 'public');
             $FotoSiswa->filename = $fileName;
             $FotoSiswa->path = '/storage/' . $filePath;
@@ -153,5 +154,39 @@ class CalonController extends Controller
     {
         CalonSiswa::where('calon_id', $request->calon_id)->delete();
         return back()->with('success', 'Data berhasil dihapus');
+    }
+
+    // Kelulusan
+    public function kelulusan()
+    {
+        $data = Kelulusan::all();
+        $datakcs = KelompokCalonSiswa::all();
+        $datapsb = ProsesPSB::all();
+
+        $exludedata = Kelulusan::where('status', '1')->select('calon_id')->get()->toArray();
+        $datacalon = CalonSiswa::whereNotIn('calon_id', $exludedata)->get();
+        return view('admin.kelulusan', ['data' => $data, 'datacalon' => $datacalon, 'datakcs' => $datakcs, 'datapsb' => $datapsb]);
+    }
+
+    public function lulus(Request $request)
+    {
+        $data = Kelulusan::updateOrCreate(
+            [
+                'calon_id' => $request->calon_id,
+            ],
+            [
+                'status' => '1',
+            ]
+        );
+        return redirect()->back()->with('response', 1);
+    }
+
+    public function tolak(Request $request)
+    {
+        $data = Kelulusan::where('id', $request->id);
+        $data->update([
+            'status' => '0',
+        ]);
+        return back()->with('success', 'Status Siswa Telah Diubah');
     }
 }

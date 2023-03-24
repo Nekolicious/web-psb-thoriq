@@ -64,6 +64,22 @@
     </div>
     <!-- Header End -->
 
+    <!-- Info Kelulusan -->
+    <div class="container-fluid bg-white">
+        <div class="row d-flex justify-content-center align-items-center text-center p-5">
+            <h3>Cek Kelulusan</h3>
+            <hr>
+            <div class="col-sm-12 col-md-4">
+                <a class="btn btn-lg btn-success rounded-pill px-5" href="{{ url('/kelulusan/paud') }}">PAUD</a>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <a class="btn btn-lg btn-success rounded-pill px-5" href="{{ url('/kelulusan/tpa') }}">TPA</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Kelulusan -->
+
     <!-- Info -->
     <div class="container-fluid bg-thoriq">
         <div class="row d-flex justify-content-center align-items-center text-center p-5">
@@ -72,10 +88,7 @@
             </div>
             <div class="col-sm-12 col-md-6 my-2 text-white text-start">
                 <h1 class="header-info px-2">Sekilas Tentang Kami</h1>
-                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id, est at sapiente placeat
-                    explicabo rem
-                    odio. Temporibus odit soluta quod totam veritatis, laudantium nostrum ratione tempore placeat
-                    aspernatur consectetur? Ut!</p>
+                <p class="lead">Yayasan Thoriqul Jannah adalah institusi yang memprioritaskan pengajaran Pendidikan Agama Islam. Melalui implementasi Al-Qur'an dan sunnah dalam proses belajar dan kegiatan sehari-hari, hal ini akan menghasilkan generasi yang memahami Al-Qur'an dan memiliki akhlak yang baik.</p>
             </div>
         </div>
     </div>

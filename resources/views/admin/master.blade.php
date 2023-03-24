@@ -79,6 +79,13 @@
                 </a>
             </li>
 
+            <li class="nav-item {{ Request::is('dashboard/psb/kelulusan*') ? 'active':'' }}">
+                <a class="nav-link" href="{{ route('dashboard.psb.kelulusan') }}">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Kelulusan</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
             <div class="sidebar-heading">

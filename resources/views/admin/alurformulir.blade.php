@@ -19,8 +19,8 @@ Alur Formulir
     </div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Alur Formulir Pendaftaran Saat Ini</h6>
+        <div class="card-header bg-success text-center py-3">
+            <h6 class="m-0 font-weight-bold text-white">Alur Formulir Pendaftaran PAUD</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -33,7 +33,46 @@ Alur Formulir
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach( $data as $key )
+                        @foreach( $datapaud as $key )
+                        <input type="hidden" name="id" value="1">
+                        <tr>
+                            <td>
+                                <button class="btn btn-outline-secondary rounded" type="text" disabled>{{ $key->ppsb->kode }} | {{ $key->ppsb->nama }}</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-success" disabled>Aktif</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-secondary rounded" type="text" disabled>{{ $key->kcs->nama }}</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button class="btn btn-info px-5" data-toggle="modal" data-target="#formModal">Ubah</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header bg-success text-center py-3">
+            <h6 class="m-0 font-weight-bold text-white">Alur Formulir Pendaftaran TPA</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th><a href="{{ route('dashboard.psb.ppsb') }}">Proses Penerimaan Siswa Baru</a></th>
+                            <th><i class="fas fa-arrow-right"></i></th>
+                            <th><a href="{{ route('dashboard.psb.kcs') }}">Kelompok Calon Siswa</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach( $datatpa as $key )
+                        <input type="hidden" name="id" value="2">
                         <tr>
                             <td>
                                 <button class="btn btn-outline-secondary rounded" type="text" disabled>{{ $key->ppsb->kode }} | {{ $key->ppsb->nama }}</button>

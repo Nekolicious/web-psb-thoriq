@@ -58,6 +58,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::delete('/delete', [PPSBController::class, 'delete'])->name('delete');
         });
 
+        // Kelompok Calon Siswa
         Route::get('/kcs', [KCSController::class, 'kcs'])->name('kcs');
         Route::prefix('/kcs')->name('kcs.')->group(function () {
             Route::get('/input', [KCSController::class, 'inputkcs'])->name('inputkcs');
@@ -66,6 +67,7 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::delete('/delete', [KCSController::class, 'delete'])->name('delete');
         });
 
+        // Calon Siswa
         Route::get('/data', [CalonController::class, 'data'])->name('calon');
         Route::prefix('/data')->name('data.')->group(function () {
             Route::get('/input', [CalonController::class, 'inputcalon'])->name('inputcalon');
@@ -75,9 +77,23 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
             Route::post('/update', [CalonController::class, 'update'])->name('update');
             Route::delete('/delete', [CalonController::class, 'delete'])->name('delete');
         });
+
+        // Siswa Lulus
+        Route::get('/kelulusan', [CalonController::class, 'kelulusan'])->name('kelulusan');
+        Route::prefix('/kelulusan')->name('kelulusan.')->group(function() {
+            Route::post('/lulus', [CalonController::class, 'lulus'])->name('lulus');
+            Route::post('/tolak', [CalonController::class, 'tolak'])->name('tolak');
+        });
     });
 });
 
 // Form Daftar
 Route::get('/daftar', [PageController::class, 'daftar'])->name('daftar');
+Route::get('/daftar/paud', [PageController::class, 'daftarpaud'])->name('daftarpaud');
+Route::get('/daftar/tpa', [PageController::class, 'daftartpa'])->name('daftartpa');
+Route::get('/daftar/paud', [PageController::class, 'daftarpaud'])->name('daftarpaud');
 Route::post('/daftar-store', [PageController::class, 'store'])->name('daftar_action');
+
+// Kelulusan
+Route::get('/kelulusan/paud', [PageController::class, 'kelulusanpaud'])->name('kelulusanpaud');
+Route::get('/kelulusan/tpa', [PageController::class, 'kelulusantpa'])->name('kelulusantpa');

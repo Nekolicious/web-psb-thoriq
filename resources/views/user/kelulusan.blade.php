@@ -12,6 +12,8 @@
     <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/datatables.min.css') }}">
 </head>
 
 <body>
@@ -28,39 +30,43 @@
 
     <div class="container-flex gradient-form header-thoriq">
         <div class="container px-md-5 py-4">
+            {{-- Success Alert --}}
+            @if(session('success'))
+            <div class="m-3 alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Sukses!</strong> {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endif
+            {{-- Error Alert --}}
+            @foreach($errors->all() as $err)
+            <div class="m-3 alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> {{ $err }}
+                <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @endforeach
             <!-- Page Heading -->
             <div class="text-center py-4 text-light">
-                <h1>Formulir Pendaftaran Siswa Baru</h1>
+                <h1>Kelulusan</h1>
                 <h3>Yayasan Thoriqul Jannah</h3>
                 <hr>
                 <div class="row">
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <a href="{{ route('daftarpaud') }}" class="btn btn-thoriq {{ Request::is('daftar/paud*') ? 'disabled':'' }}">
+                        <a href="{{ route('kelulusanpaud') }}" class="btn btn-thoriq {{ Request::is('kelulusan/paud*') ? 'disabled':'' }}">
                             <h5 class="lead px-5">PAUD</h5>
                         </a>
                     </div>
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <a href="{{ route('daftartpa') }}" class="btn btn-thoriq {{ Request::is('daftar/tpa*') ? 'disabled':'' }}">
+                        <a href="{{ route('kelulusantpa') }}" class="btn btn-thoriq {{ Request::is('kelulusan/tpa*') ? 'disabled':'' }}">
                             <h5 class="lead px-5">TPA</h5>
                         </a>
                     </div>
                 </div>
                 <hr>
             </div>
-            {{-- Success Alert --}}
-            @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Sukses!</strong> {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
-            {{-- Error Alert --}}
-            @foreach($errors->all() as $err)
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> {{ $err }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endforeach
 
             <!-- Form -->
             @yield('content')
@@ -74,13 +80,14 @@
                 <div class="col-sm-12 col-md-12">
                     <span class="h6">PAUD Thoriqul Jannah</span><br>
                     <span>+62 811-2347-187</span><br>
-                    <span>Dusun Babakan RT.02 RW.08 Desa Pamulihan Kec. Pamulihan Sumedang</span><br>
+                    <span>Dusun Babakan RT.02 RW.08 Desa Pamulihan Kec. Pamulihan Sumedang</span><br>
                     <a href="https://api.whatsapp.com/send/?phone=+628112347187&text=Assalamu+%27alaikum.&type=phone_number&app_absent=0" target="_blank" class="btn btn-dark rounded-circle"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="https://www.instagram.com/koberthoriquljannah/" target="_blank" class="btn btn-dark rounded-circle"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
         <!-- Footer End -->
+        @yield('script')
 </body>
 
 </html>
