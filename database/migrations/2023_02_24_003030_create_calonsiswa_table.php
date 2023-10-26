@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('agama');
             $table->string('kewarganegaraan');
             $table->string('alamat');
-            $table->string('namaortu');
-            $table->string('pendidikanortu');
-            $table->string('pekerjaanortu');
-            $table->string('teleponortu');
-            $table->string('alamatortu');
+            // $table->string('namaortu');
+            // $table->string('pendidikanortu');
+            // $table->string('pekerjaanortu');
+            // $table->string('teleponortu');
+            // $table->string('alamatortu');
             $table->boolean('status');
             $table->timestamps();
 

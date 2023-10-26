@@ -84,7 +84,7 @@
     <div class="container-fluid bg-thoriq">
         <div class="row d-flex justify-content-center align-items-center text-center p-5">
             <div class="col-sm-12 col-md-6 my-2">
-                <img class="img-fluid" src="{{ asset('img/sekolah2.jpg') }}" alt="info-thoriquljannah">
+                <img class="img-fluid" src="{{ asset('img/sekolah22.jpg') }}" alt="info-thoriquljannah">
             </div>
             <div class="col-sm-12 col-md-6 my-2 text-white text-start">
                 <h1 class="header-info px-2">Sekilas Tentang Kami</h1>

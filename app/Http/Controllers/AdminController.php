@@ -62,6 +62,7 @@ class AdminController extends Controller
                 'id' => $request->id,
             ],
             [
+                'id' => $request->id,
                 'ppsb_id' => $request->ppsb_id,
                 'kcs_id' => $request->kcs_id,
             ]
@@ -76,6 +77,9 @@ class AdminController extends Controller
 
         $request->validate([
             'newpassword' => 'required|min:8',
+        ],[
+            'newpassword.required' => 'Harap isi password baru',
+            'newpassword.min' => 'Password minimal 8 karakter'
         ]);
 
         if (Hash::check($request->password, $data->password)) {
@@ -94,6 +98,9 @@ class AdminController extends Controller
 
         $request->validate([
             'newname' => 'required|min:3',
+        ], [
+            'newname.required' => 'Harap isi username baru',
+            'newname.min' => 'Username minimal 3 karakter',
         ]);
 
         if (Hash::check($request->password, $data->password)) {

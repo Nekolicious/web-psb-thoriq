@@ -24,6 +24,7 @@ Alur Formulir
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                @foreach( $datapaud as $key )
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -33,7 +34,6 @@ Alur Formulir
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach( $datapaud as $key )
                         <input type="hidden" name="id" value="1">
                         <tr>
                             <td>
@@ -46,11 +46,11 @@ Alur Formulir
                                 <button class="btn btn-outline-secondary rounded" type="text" disabled>{{ $key->kcs->nama }}</button>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
+                @endforeach
                 <div class="text-center">
-                    <button class="btn btn-info px-5" data-toggle="modal" data-target="#formModal">Ubah</button>
+                    <button class="btn btn-info px-5" data-toggle="modal" data-id="1" data-target="#formModal">Ubah</button>
                 </div>
             </div>
         </div>
@@ -62,6 +62,7 @@ Alur Formulir
         </div>
         <div class="card-body">
             <div class="table-responsive">
+                @foreach( $datatpa as $key )
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -71,7 +72,6 @@ Alur Formulir
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach( $datatpa as $key )
                         <input type="hidden" name="id" value="2">
                         <tr>
                             <td>
@@ -84,11 +84,11 @@ Alur Formulir
                                 <button class="btn btn-outline-secondary rounded" type="text" disabled>{{ $key->kcs->nama }}</button>
                             </td>
                         </tr>
-                        @endforeach
                     </tbody>
                 </table>
+                @endforeach
                 <div class="text-center">
-                    <button class="btn btn-info px-5" data-toggle="modal" data-target="#formModal">Ubah</button>
+                    <button class="btn btn-info px-5" data-toggle="modal" data-id="2" data-target="#formModal">Ubah</button>
                 </div>
             </div>
         </div>
@@ -139,16 +139,10 @@ Alur Formulir
 <script>
     $('#formModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('calonid')
-        var name = button.data('nama')
-        var status = button.data('status')
-        var nodaftar = button.data('nodaftar')
+        var id = button.data('id')
         var modal = $(this)
         modal.find('.modal-title').text('Ubah status untuk ' + name + "?")
-        modal.find('.modal-body #nama-siswa').val(name)
-        modal.find('.modal-body #calon-id').val(id)
-        modal.find('.modal-body #calon-status').val(status)
-        modal.find('.modal-body #no-daftar').val(nodaftar)
+        modal.find('.modal-body #id').val(id)
     })
 </script>
 

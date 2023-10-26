@@ -30,6 +30,11 @@
 
     <div class="container-flex gradient-form header-thoriq">
         <div class="container px-md-5 py-4">
+            <div class="row">
+                <div class="col-4">
+                    <a href="{{ url('/') }}" class="btn btn-thoriq rounded-pill">Kembali</a>
+                </div>
+            </div>
             {{-- Success Alert --}}
             @if(session('success'))
             <div class="m-3 alert alert-success alert-dismissible fade show" role="alert">

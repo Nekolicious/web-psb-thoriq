@@ -12,7 +12,7 @@ class FormulirAktif extends Model
     protected $table = 'formuliraktif';
     protected $primarykey = 'id';
 
-    protected $fillable = ['kcs_id','ppsb_id'];
+    protected $fillable = ['id','kcs_id','ppsb_id'];
 
     public function kcs() {
         return $this->hasOne(KelompokCalonSiswa::class, 'kcs_id', 'kcs_id');

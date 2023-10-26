@@ -1,0 +1,9 @@
+config:
+    target: 'https://127.0.0.1:8000'
+    phases:
+      - duration: 60
+        arrivalRate: 10
+scenarios:
+    - flow:
+      - get:
+          url: "/"

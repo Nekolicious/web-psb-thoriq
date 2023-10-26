@@ -28,6 +28,11 @@
 
     <div class="container-flex gradient-form header-thoriq">
         <div class="container px-md-5 py-4">
+            <div class="row">
+                <div class="col-4">
+                    <a href="{{ url('/') }}" class="btn btn-thoriq rounded-pill">Kembali</a>
+                </div>
+            </div>
             <!-- Page Heading -->
             <div class="text-center py-4 text-light">
                 <h1>Formulir Pendaftaran Siswa Baru</h1>

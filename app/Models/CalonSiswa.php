@@ -25,4 +25,12 @@ class CalonSiswa extends Model
     public function foto() {
         return $this->hasOne(FotoSiswa::class, 'foto_id', 'foto_id');
     }
+
+    public function paud() {
+        return $this->hasOne(CalonSiswaPAUD::class, 'calon_id', 'calon_id');
+    }
+
+    public function tpa() {
+        return $this->hasOne(CalonSiswaTPA::class, 'calon_id', 'calon_id');
+    }
 }

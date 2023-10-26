@@ -22,7 +22,7 @@ Data Calon Siswa
                     <thead>
                         <tr>
                             <th>No. Pendaftaran</th>
-                            <th>Kelompok</th>
+                            <th>Kelompok - </th>
                             <th>Nama Siswa</th>
                             <th>Terakhir Diupdate</th>
                             <th>Status</th>
@@ -32,7 +32,7 @@ Data Calon Siswa
                     <tfoot>
                         <tr>
                             <th>No. Pendaftaran</th>
-                            <th>nama Kelompok</th>
+                            <th>Kelompok</th>
                             <th>Nama Siswa</th>
                             <th>Terakhir Diupdate</th>
                             <th>Status</th>
@@ -59,7 +59,13 @@ Data Calon Siswa
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('dashboard.psb.data.editcalon', ['calon_id'=>$key->calon_id]) }}" class="btn btn-warning mx-1">Edit</a>
+                                    @if (isset($key->paud))
+                                    <a href="{{ route('dashboard.psb.data.lihatcalonpaud', ['calon_id'=>$key->calon_id]) }}" class="btn btn-primary mx-1">Lihat</a>
+                                    <a href="{{ route('dashboard.psb.data.editcalonpaud', ['calon_id'=>$key->calon_id]) }}" class="btn btn-warning mx-1">Edit</a>
+                                    @else
+                                    <a href="{{ route('dashboard.psb.data.lihatcalontpa', ['calon_id'=>$key->calon_id]) }}" class="btn btn-primary mx-1">Lihat</a>
+                                    <a href="{{ route('dashboard.psb.data.editcalontpa', ['calon_id'=>$key->calon_id]) }}" class="btn btn-warning mx-1">Edit</a>
+                                    @endif
                                     <button data-toggle="modal" data-target="#deleteModal" data-nama="{{ $key->nama }}" class="btn btn-danger mx-1" data-calon-id="{{ $key->calon_id }}" data-nodaftar="{{ $key->nodaftar }}">Hapus</button>
                                 </div>
                             </td>
@@ -179,5 +185,5 @@ Data Calon Siswa
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
-<script src="{{ asset('js/demo/datatables-kelulusan.js') }}"></script>
+<script src="{{ asset('js/demo/datatables-calon.js') }}"></script>
 @endsection

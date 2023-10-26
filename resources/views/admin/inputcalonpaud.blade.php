@@ -1,20 +1,8 @@
-@extends('user.formdaftar')
-
-@section('title')
-Form Daftar TPA
-@endsection
+@extends('admin.inputcalon')
 
 @section('content')
-<!-- Form TPA -->
-<div id="tpa">
-    <div class="card shadow mb-4 bg-success text-white text-center">
-        <div class="card-header">
-            <h3>Pendaftaran TPA</h3>
-        </div>
-    </div>
-    <form action="{{ route('daftartpa_action') }}" enctype="multipart/form-data" method="POST">
-        <div class="card shadow mb-4">
-
+<form action="{{ route('dashboard.psb.data.storepaud') }}" enctype="multipart/form-data" method="POST">
+<div class="card shadow mb-4">
             <!-- Informasi Siswa -->
             <div class="card-header">
                 <h6 class="m-0 font-weight-bold text-success">Informasi Siswa</h6>
@@ -29,16 +17,8 @@ Form Daftar TPA
                     <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="nism" class="form-label">NISM<span class="text-danger">*</span></label>
-                    <input type="text" name="nism" class="form-control" id="nism" value="{{ old('nism') }}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="nisn" class="form-label">NISN<span class="text-danger">*</span></label>
-                    <input type="text" name="nisn" class="form-control" id="nisn" value="{{ old('nisn') }}" required>
-                </div>
-                <div class="mb-3">
-                    <label for="nik" class="form-label">NIK<span class="text-danger">*</span></label>
-                    <input type="text" name="nik" class="form-control" id="nik" value="{{ old('nik') }}" required>
+                    <label for="nomorinduk" class="form-label">Nomor Induk<span class="text-danger">*</span></label>
+                    <input type="text" name="nomorinduk" class="form-control" id="nomorinduk" value="{{ old('nomorinduk') }}" required>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
@@ -88,28 +68,44 @@ Form Daftar TPA
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="kewarganegaraan" class="form-label">Kewarganegaraan <span class="text-danger">*</span></label>
-                    <input type="text" name="kewarganegaraan" class="form-control" id="kewarganegaraan" value="{{ old('kewarganegaraan') }}" required>
-                </div>
-                <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
                     <input type="text" name="alamat" class="form-control" id="alamat" value="{{ old('alamat') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="hobi" class="form-label">Hobi<span class="text-danger">*</span></label>
-                    <input type="text" name="hobi" class="form-control" id="hobi" value="{{ old('hobi') }}" required>
+                    <label for="kewarganegaraan" class="form-label">Kewarganegaraan <span class="text-danger">*</span></label>
+                    <input type="text" name="kewarganegaraan" class="form-control" id="kewarganegaraan" value="{{ old('kewarganegaraan') }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="citacita" class="form-label">Cita-Cita<span class="text-danger">*</span></label>
                     <input type="text" name="citacita" class="form-control" id="citacita" value="{{ old('citacita') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="anakke" class="form-label">Anak Ke-<span class="text-danger">*</span></label>
-                    <input type="text" name="anakke" class="form-control" id="anakke" value="{{ old('anakke') }}" required>
+                    <label for="hobi" class="form-label">Hobi<span class="text-danger">*</span></label>
+                    <input type="text" name="hobi" class="form-control" id="hobi" value="{{ old('hobi') }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="jmlsaudara" class="form-label">Jumlah Saudara<span class="text-danger">*</span></label>
+                    <label for="jmlsaudara" class="form-label">Jumlah Saudara Kandung<span class="text-danger">*</span></label>
                     <input type="text" name="jmlsaudara" class="form-control" id="jmlsaudara" value="{{ old('jmlsaudara') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="jaraksekolah" class="form-label">Jarak Tempuh Ke Sekolah (KM)<span class="text-danger">*</span></label>
+                    <input type="number" name="jaraksekolah" class="form-control" id="jaraksekolah" value="{{ old('jaraksekolah') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="kendaraan" class="form-label">Kendaraan Yang Digunakan<span class="text-danger">*</span></label>
+                    <input type="text" name="kendaraan" class="form-control" id="kendaraan" value="{{ old('kendaraan') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="beratbadan" class="form-label">Berat Badan (KG)<span class="text-danger">*</span></label>
+                    <input type="number" name="beratbadan" class="form-control" id="beratbadan" value="{{ old('beratbadan') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="tinggibadan" class="form-label">Tinggi Badan (CM)<span class="text-danger">*</span></label>
+                    <input type="number" name="tinggibadan" class="form-control" id="tinggibadan" value="{{ old('tinggibadan') }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="lingkarkepala" class="form-label">Lingkar Kepala (CM)<span class="text-danger">*</span></label>
+                    <input type="number" name="lingkarkepala" class="form-control" id="lingkarkepala" value="{{ old('lingkarkepala') }}" required>
                 </div>
                 <div class="mb-3">
                     <small><span class="text-danger">*</span> Wajib diisi</small>
@@ -235,40 +231,14 @@ Form Daftar TPA
                     <label for="penghasilanibu" class="form-label">Penghasilan Ibu (RP)<span class="text-danger">*</span></label>
                     <input type="number" name="penghasilanibu" class="form-control" id="penghasilanibu" value="{{ old('penghasilanibu') }}" required>
                 </div>
-                <div class="text-center mx-3 mb-3">
-                    <button type="submit" class="btn btn-lg btn-thoriq px-5">Daftar</button>
+                <div class="mb-3">
+                    <small><span class="text-danger">*</span> Wajib diisi</small>
                 </div>
             </div>
-            <hr>
-        </div>
-    </form>
-</div>
-<!-- Form TPA End -->
-<!-- Modal Form Disabled -->
-<button type="button" style="display: none;" id="formClosed" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Closed
-</button>
-
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Pendaftaran Ditutup</h5>
-            </div>
-            <div class="modal-body">
-                Hubungi admin untuk informasi lebih lengkap.
-            </div>
-            <div class="modal-footer">
-                <a href="{{ url('/') }}" type="button" class="btn btn-primary">Kembali</a>
+            <div class="text-center mx-3 mb-3">
+                <button type="submit" class="btn btn-lg btn-success px-5">Tambah</button>
             </div>
         </div>
-    </div>
-</div>
-<!-- Modal Form Disabled End -->
-
-@if( $data->count() < 1) <script>
-    document.getElementById("formClosed").click();
-    </script>
-    @endif
-
-    @endsection
+        <hr>
+</form>
+@endsection
